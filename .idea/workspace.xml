@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee16e8cb-ed51-4f04-bef8-2688c28b6e51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/db_config.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db_fixture/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db_fixture/mysql_db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db_fixture/test_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/add_event_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/add_guest_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/get_event_list_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/get_guest_list_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/user_sign_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run_tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_fixture/mysql_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_fixture/mysql_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_fixture/test_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_fixture/test_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/add_event_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/add_event_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/add_guest_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/add_guest_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/get_event_list_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/get_event_list_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/get_guest_list_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/get_guest_list_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/user_sign_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/user_sign_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,26 +29,29 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="ini" value="1" />
-          <entry key="py" value="10" />
+          <entry key="html" value="12" />
+          <entry key="ini" value="2" />
+          <entry key="py" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="HTML" value="12" />
+          <entry key="Ini" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="10" />
+          <entry key="Python" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
-          <entry key="py" value="1304" />
+          <entry key="py" value="1411" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="1304" />
+          <entry key="Python" value="1411" />
         </counts>
       </usages-collector>
     </session>
@@ -61,36 +59,21 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface_test.py">
+        <entry file="file://$PROJECT_DIR$/run_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <marker date="1554791548785" expanded="true" signature="76:81" ph="..." />
-              </folding>
+            <state relative-caret-position="346">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/run_tests.py">
+        <entry file="file://$PROJECT_DIR$/interface/get_event_list_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="17" column="49" lean-forward="true" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_fixture/mysql_db.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="-47">
+              <caret line="36" column="51" lean-forward="true" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
-                <marker date="1554800642198" expanded="true" signature="544:545" ph="..." />
-                <marker date="1554800642198" expanded="true" signature="544:550" ph="..." />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface/add_event_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1500">
-              <caret line="60" column="19" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
+            <state relative-caret-position="361">
+              <caret line="60" column="26" lean-forward="true" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -111,44 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface/add_guest_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1900">
-              <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface/get_event_list_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface/get_guest_list_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1475">
-              <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/interface/user_sign_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="300">
+              <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -159,15 +106,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_fixture/test_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+            <state relative-caret-position="175">
+              <caret line="13" lean-forward="true" selection-start-line="12" selection-end-line="13" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_fixture/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -179,6 +121,14 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>2017</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>2017-05-10 12:00:00</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -189,23 +139,23 @@
         <option value="$PROJECT_DIR$/db_config.ini" />
         <option value="$PROJECT_DIR$/db_fixture/__init__.py" />
         <option value="$PROJECT_DIR$/db_fixture/mysal_db.py" />
-        <option value="$PROJECT_DIR$/db_fixture/mysql_db.py" />
-        <option value="$PROJECT_DIR$/db_fixture/test_data.py" />
         <option value="$PROJECT_DIR$/interface/__init__.py" />
-        <option value="$PROJECT_DIR$/interface/add_event_test.py" />
+        <option value="$PROJECT_DIR$/db_fixture/mysql_db.py" />
+        <option value="$PROJECT_DIR$/run_tests.py" />
         <option value="$PROJECT_DIR$/interface/add_guest_test.py" />
-        <option value="$PROJECT_DIR$/interface/get_event_list_test.py" />
         <option value="$PROJECT_DIR$/interface/get_guest_list_test.py" />
         <option value="$PROJECT_DIR$/interface/user_sign_test.py" />
-        <option value="$PROJECT_DIR$/run_tests.py" />
+        <option value="$PROJECT_DIR$/db_fixture/test_data.py" />
+        <option value="$PROJECT_DIR$/interface/add_event_test.py" />
+        <option value="$PROJECT_DIR$/interface/get_event_list_test.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="765" />
-    <option name="y" value="242" />
+    <option name="x" value="536" />
+    <option name="y" value="25" />
     <option name="width" value="1150" />
-    <option name="height" value="952" />
+    <option name="height" value="724" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -219,6 +169,21 @@
             <path>
               <item name="guest_interface_test" type="b2602c69:ProjectViewProjectNode" />
               <item name="guest_interface_test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="guest_interface_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="guest_interface_test" type="462c0819:PsiDirectoryNode" />
+              <item name="db_fixture" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="guest_interface_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="guest_interface_test" type="462c0819:PsiDirectoryNode" />
+              <item name="interface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="guest_interface_test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="guest_interface_test" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -242,6 +207,71 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="Python.run_tests">
+    <configuration name="run_tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="guest_interface_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for add_event_test.AddEventTest.test_add_event_eid_exist" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="guest_interface_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interface" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;add_event_test.AddEventTest.test_add_event_eid_exist&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in add_event_test.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="guest_interface_test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interface" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/interface/add_event_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.run_tests" />
+      <item itemvalue="Python tests.pytest in add_event_test.py" />
+      <item itemvalue="Python tests.pytest for add_event_test.AddEventTest.test_add_event_eid_exist" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.run_tests" />
+        <item itemvalue="Python tests.pytest for add_event_test.AddEventTest.test_add_event_eid_exist" />
+        <item itemvalue="Python tests.pytest in add_event_test.py" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -255,16 +285,24 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="pytest_in_add_event_test_py - 2019.04.09 at 17h 55m 30s.xml">
+      <configuration name="pytest in add_event_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_add_event_test_AddEventTest_test_add_event_eid_exist - 2019.04.10 at 10h 04m 32s.xml">
+      <configuration name="pytest for add_event_test.AddEventTest.test_add_event_eid_exist" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="765" y="242" width="1150" height="952" extended-state="0" />
+    <frame x="536" y="25" width="1150" height="724" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13219425" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13219425" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32925338" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38370118" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -282,13 +320,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db_config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_fixture/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -298,26 +329,6 @@
           <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <marker date="1554791548785" expanded="true" signature="76:81" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_fixture/test_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_fixture/mysql_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <marker date="1554800642198" expanded="true" signature="544:545" ph="..." />
-            <marker date="1554800642198" expanded="true" signature="544:550" ph="..." />
           </folding>
         </state>
       </provider>
@@ -325,30 +336,205 @@
     <entry file="file://$PROJECT_DIR$/interface/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface/add_event_test.py">
+    <entry file="file://$PROJECT_DIR$/report/2019-04-09 17-42-52_result.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="60" column="19" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
+        <state relative-caret-position="-300" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-09 17-59-35_result.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#9403#9407#0" expanded="true" />
+            <element signature="e#9469#9473#0" expanded="true" />
+            <element signature="e#10226#10230#0" expanded="true" />
+            <element signature="e#10292#10296#0" expanded="true" />
+            <element signature="e#11516#11520#0" expanded="true" />
+            <element signature="e#11582#11586#0" expanded="true" />
+            <element signature="e#14579#14583#0" expanded="true" />
+            <element signature="e#14645#14649#0" expanded="true" />
+            <element signature="e#15402#15406#0" expanded="true" />
+            <element signature="e#15468#15472#0" expanded="true" />
+            <element signature="e#16698#16702#0" expanded="true" />
+            <element signature="e#16764#16768#0" expanded="true" />
+            <element signature="e#19762#19766#0" expanded="true" />
+            <element signature="e#19828#19832#0" expanded="true" />
+            <element signature="e#20585#20589#0" expanded="true" />
+            <element signature="e#20651#20655#0" expanded="true" />
+            <element signature="e#21876#21880#0" expanded="true" />
+            <element signature="e#21942#21946#0" expanded="true" />
+            <element signature="e#24935#24939#0" expanded="true" />
+            <element signature="e#25001#25005#0" expanded="true" />
+            <element signature="e#25758#25762#0" expanded="true" />
+            <element signature="e#25824#25828#0" expanded="true" />
+            <element signature="e#27049#27053#0" expanded="true" />
+            <element signature="e#27115#27119#0" expanded="true" />
+            <element signature="e#30104#30108#0" expanded="true" />
+            <element signature="e#30170#30174#0" expanded="true" />
+            <element signature="e#30927#30931#0" expanded="true" />
+            <element signature="e#30993#30997#0" expanded="true" />
+            <element signature="e#32215#32219#0" expanded="true" />
+            <element signature="e#32281#32285#0" expanded="true" />
+            <element signature="e#35510#35514#0" expanded="true" />
+            <element signature="e#35576#35580#0" expanded="true" />
+            <element signature="e#36333#36337#0" expanded="true" />
+            <element signature="e#36399#36403#0" expanded="true" />
+            <element signature="e#37612#37616#0" expanded="true" />
+            <element signature="e#37678#37682#0" expanded="true" />
+            <element signature="e#40672#40676#0" expanded="true" />
+            <element signature="e#40738#40742#0" expanded="true" />
+            <element signature="e#41495#41499#0" expanded="true" />
+            <element signature="e#41561#41565#0" expanded="true" />
+            <element signature="e#42785#42789#0" expanded="true" />
+            <element signature="e#42851#42855#0" expanded="true" />
+            <element signature="e#45856#45860#0" expanded="true" />
+            <element signature="e#45922#45926#0" expanded="true" />
+            <element signature="e#46679#46683#0" expanded="true" />
+            <element signature="e#46745#46749#0" expanded="true" />
+            <element signature="e#47970#47974#0" expanded="true" />
+            <element signature="e#48036#48040#0" expanded="true" />
+            <element signature="e#51056#51060#0" expanded="true" />
+            <element signature="e#51122#51126#0" expanded="true" />
+            <element signature="e#51879#51883#0" expanded="true" />
+            <element signature="e#51945#51949#0" expanded="true" />
+            <element signature="e#53172#53176#0" expanded="true" />
+            <element signature="e#53238#53242#0" expanded="true" />
+            <element signature="e#56258#56262#0" expanded="true" />
+            <element signature="e#56324#56328#0" expanded="true" />
+            <element signature="e#57081#57085#0" expanded="true" />
+            <element signature="e#57147#57151#0" expanded="true" />
+            <element signature="e#58374#58378#0" expanded="true" />
+            <element signature="e#58440#58444#0" expanded="true" />
+            <element signature="e#61444#61448#0" expanded="true" />
+            <element signature="e#61510#61514#0" expanded="true" />
+            <element signature="e#62267#62271#0" expanded="true" />
+            <element signature="e#62333#62337#0" expanded="true" />
+            <element signature="e#63555#63559#0" expanded="true" />
+            <element signature="e#63621#63625#0" expanded="true" />
+            <element signature="e#66624#66628#0" expanded="true" />
+            <element signature="e#66690#66694#0" expanded="true" />
+            <element signature="e#67447#67451#0" expanded="true" />
+            <element signature="e#67513#67517#0" expanded="true" />
+            <element signature="e#68738#68742#0" expanded="true" />
+            <element signature="e#68804#68808#0" expanded="true" />
+            <element signature="e#72069#72073#0" expanded="true" />
+            <element signature="e#72135#72139#0" expanded="true" />
+            <element signature="e#72905#72909#0" expanded="true" />
+            <element signature="e#72971#72975#0" expanded="true" />
+            <element signature="e#74214#74218#0" expanded="true" />
+            <element signature="e#74280#74284#0" expanded="true" />
+            <element signature="e#77308#77312#0" expanded="true" />
+            <element signature="e#77374#77378#0" expanded="true" />
+            <element signature="e#78142#78146#0" expanded="true" />
+            <element signature="e#78208#78212#0" expanded="true" />
+            <element signature="e#79449#79453#0" expanded="true" />
+            <element signature="e#79515#79519#0" expanded="true" />
+            <element signature="e#82545#82549#0" expanded="true" />
+            <element signature="e#82611#82615#0" expanded="true" />
+            <element signature="e#83382#83386#0" expanded="true" />
+            <element signature="e#83448#83452#0" expanded="true" />
+            <element signature="e#84701#84705#0" expanded="true" />
+            <element signature="e#84767#84771#0" expanded="true" />
+            <element signature="e#87794#87798#0" expanded="true" />
+            <element signature="e#87860#87864#0" expanded="true" />
+            <element signature="e#88655#88659#0" expanded="true" />
+            <element signature="e#88721#88725#0" expanded="true" />
+            <element signature="e#89992#89996#0" expanded="true" />
+            <element signature="e#90058#90062#0" expanded="true" />
+            <element signature="e#93333#93337#0" expanded="true" />
+            <element signature="e#93399#93403#0" expanded="true" />
+            <element signature="e#94169#94173#0" expanded="true" />
+            <element signature="e#94235#94239#0" expanded="true" />
+            <element signature="e#95478#95482#0" expanded="true" />
+            <element signature="e#95544#95548#0" expanded="true" />
+            <element signature="e#98581#98585#0" expanded="true" />
+            <element signature="e#98647#98651#0" expanded="true" />
+            <element signature="e#99383#99388#0" expanded="true" />
+            <element signature="e#99437#99441#0" expanded="true" />
+            <element signature="e#99503#99507#0" expanded="true" />
+            <element signature="e#100737#100742#0" expanded="true" />
+            <element signature="e#100791#100795#0" expanded="true" />
+            <element signature="e#100857#100861#0" expanded="true" />
+            <element signature="e#103909#103913#0" expanded="true" />
+            <element signature="e#103975#103979#0" expanded="true" />
+            <element signature="e#104711#104716#0" expanded="true" />
+            <element signature="e#104765#104769#0" expanded="true" />
+            <element signature="e#104831#104835#0" expanded="true" />
+            <element signature="e#106068#106073#0" expanded="true" />
+            <element signature="e#106122#106126#0" expanded="true" />
+            <element signature="e#106188#106192#0" expanded="true" />
+            <element signature="e#109230#109234#0" expanded="true" />
+            <element signature="e#109296#109300#0" expanded="true" />
+            <element signature="e#110064#110068#0" expanded="true" />
+            <element signature="e#110130#110134#0" expanded="true" />
+            <element signature="e#111371#111375#0" expanded="true" />
+            <element signature="e#111437#111441#0" expanded="true" />
+            <element signature="e#114458#114462#0" expanded="true" />
+            <element signature="e#114524#114528#0" expanded="true" />
+            <element signature="e#115291#115295#0" expanded="true" />
+            <element signature="e#115357#115361#0" expanded="true" />
+            <element signature="e#116595#116599#0" expanded="true" />
+            <element signature="e#116661#116665#0" expanded="true" />
+            <element signature="e#119909#119913#0" expanded="true" />
+            <element signature="e#119975#119979#0" expanded="true" />
+            <element signature="e#120732#120736#0" expanded="true" />
+            <element signature="e#120798#120802#0" expanded="true" />
+            <element signature="e#122021#122025#0" expanded="true" />
+            <element signature="e#122087#122091#0" expanded="true" />
+            <element signature="e#125085#125089#0" expanded="true" />
+            <element signature="e#125151#125155#0" expanded="true" />
+            <element signature="e#125908#125912#0" expanded="true" />
+            <element signature="e#125974#125978#0" expanded="true" />
+            <element signature="e#127198#127202#0" expanded="true" />
+            <element signature="e#127264#127268#0" expanded="true" />
+            <element signature="e#130300#130304#0" expanded="true" />
+            <element signature="e#130366#130370#0" expanded="true" />
+            <element signature="e#131123#131127#0" expanded="true" />
+            <element signature="e#131189#131193#0" expanded="true" />
+            <element signature="e#132419#132423#0" expanded="true" />
+            <element signature="e#132485#132489#0" expanded="true" />
+            <element signature="e#135511#135515#0" expanded="true" />
+            <element signature="e#135577#135581#0" expanded="true" />
+            <element signature="e#136334#136338#0" expanded="true" />
+            <element signature="e#136400#136404#0" expanded="true" />
+            <element signature="e#137626#137630#0" expanded="true" />
+            <element signature="e#137692#137696#0" expanded="true" />
+            <element signature="e#140703#140707#0" expanded="true" />
+            <element signature="e#140769#140773#0" expanded="true" />
+            <element signature="e#141526#141530#0" expanded="true" />
+            <element signature="e#141592#141596#0" expanded="true" />
+            <element signature="e#142818#142822#0" expanded="true" />
+            <element signature="e#142884#142888#0" expanded="true" />
+            <element signature="e#145914#145918#0" expanded="true" />
+            <element signature="e#145980#145984#0" expanded="true" />
+            <element signature="e#146737#146741#0" expanded="true" />
+            <element signature="e#146803#146807#0" expanded="true" />
+            <element signature="e#148030#148034#0" expanded="true" />
+            <element signature="e#148096#148100#0" expanded="true" />
+            <element signature="e#151102#151106#0" expanded="true" />
+            <element signature="e#151168#151172#0" expanded="true" />
+            <element signature="e#151925#151929#0" expanded="true" />
+            <element signature="e#151991#151995#0" expanded="true" />
+            <element signature="e#153213#153217#0" expanded="true" />
+            <element signature="e#153279#153283#0" expanded="true" />
+            <element signature="e#156282#156286#0" expanded="true" />
+            <element signature="e#156348#156352#0" expanded="true" />
+            <element signature="e#157105#157109#0" expanded="true" />
+            <element signature="e#157171#157175#0" expanded="true" />
+            <element signature="e#158396#158400#0" expanded="true" />
+            <element signature="e#158462#158466#0" expanded="true" />
+            <element signature="e#159436#159442#1" expanded="true" />
+            <element signature="e#159501#159507#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface/add_guest_test.py">
+    <entry file="file://$PROJECT_DIR$/interface/user_sign_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1900">
-          <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface/get_event_list_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+        <state relative-caret-position="300">
+          <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -357,28 +543,104 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/interface/get_guest_list_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1475">
-          <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
+        <state relative-caret-position="300">
+          <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interface/user_sign_test.py">
+    <entry file="file://$PROJECT_DIR$/db_fixture/mysql_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="-29">
+          <caret line="68" column="20" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <marker date="1554802958869" expanded="true" signature="544:545" ph="..." />
+            <marker date="1554802958869" expanded="true" signature="544:550" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-09 18-02-39_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-09 18-38-26_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-09 18-51-23_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-09 18-53-00_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-09 18-53-51_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-10 10-09-28_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-10 10-12-32_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-10 10-32-38_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface/add_event_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="60" column="26" lean-forward="true" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface/add_guest_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_fixture/test_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="13" lean-forward="true" selection-start-line="12" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-10 11-08-54_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/run_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="49" lean-forward="true" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+        <state relative-caret-position="346">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/2019-04-10 11-33-02_result.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface/get_event_list_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="36" column="51" lean-forward="true" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

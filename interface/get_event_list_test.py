@@ -11,7 +11,7 @@ class GetEventListTest(unittest.TestCase):
 
 
     def setUp(self):
-        self.base_url = "http://127.0.0.1:8000/api/get_event_list/"
+        self.base_url = "http://127.0.0.1:8001/api/get_event_list/"
 
     def tearDown(self):
         print(self.result)
@@ -32,7 +32,7 @@ class GetEventListTest(unittest.TestCase):
         self.assertEqual(self.result['data']['name'],u'红米Pro发布会')
         self.assertEqual(self.result['data']['address'],u'北京会展中心')
 
-    def test_get_event_list_nam_result_null(self):
+    def test_get_event_list_name_result_null(self):
         ''' 关键字‘abc’查询 '''
         r = requests.get(self.base_url, params={'name':'abc'})
         self.result = r.json()
