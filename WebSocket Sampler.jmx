@@ -1,0 +1,1889 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="测试计划" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath">D:\BaiduNetdiskDownload\apache-jmeter-2.13\lib\mysql-connector-java-5.1.12-bin.jar</stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="WebSocket Sampler" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1535182747000</longProp>
+        <longProp name="ThreadGroup.end_time">1535182747000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="115792">uid</stringProp>
+            <stringProp name="3059181">code</stringProp>
+            <stringProp name="3367">ip</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="-116205441">
+              <stringProp name="-775392434">4c61866fa8ab40573668ff2acc171ba28</stringProp>
+              <stringProp name="1586286600">982ea76e92a211e787e1000c2913faa4</stringProp>
+              <stringProp name="-1909538536">admin.t7.site.webot.ai</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor-修改响应数据Unicode编码转中文" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">//获取响应代码Unicode编码的
+
+        String s2=new String(prev.getResponseData(),&quot;UTF-8&quot;);
+//---------------一下步骤为转码过程---------------
+        char aChar;
+        int len= s2.length();
+        StringBuffer outBuffer=new StringBuffer(len);
+        for(int x =0; x &lt;len;){
+            aChar= s2.charAt(x++);
+            if(aChar==&apos;\\&apos;){
+                aChar= s2.charAt(x++);
+                if(aChar==&apos;u&apos;){
+                    int value =0;
+                    for(int i=0;i&lt;4;i++){
+                        aChar= s2.charAt(x++);
+                        switch(aChar){
+                            case&apos;0&apos;:
+                            case&apos;1&apos;:
+                            case&apos;2&apos;:
+                            case&apos;3&apos;:
+                            case&apos;4&apos;:
+                            case&apos;5&apos;:
+                            case&apos;6&apos;:
+                            case&apos;7&apos;:
+                            case&apos;8&apos;:
+                            case&apos;9&apos;:
+                                value=(value &lt;&lt;4)+aChar-&apos;0&apos;;
+                                break;
+                            case&apos;a&apos;:
+                            case&apos;b&apos;:
+                            case&apos;c&apos;:
+                            case&apos;d&apos;:
+                            case&apos;e&apos;:
+                            case&apos;f&apos;:
+                                value=(value &lt;&lt;4)+10+aChar-&apos;a&apos;;
+                                break;
+                            case&apos;A&apos;:
+                            case&apos;B&apos;:
+                            case&apos;C&apos;:
+                            case&apos;D&apos;:
+                            case&apos;E&apos;:
+                            case&apos;F&apos;:
+                                value=(value &lt;&lt;4)+10+aChar-&apos;A&apos;;
+                                break;
+                            default:
+                                throw new IllegalArgumentException(
+                                        &quot;Malformed   \\uxxxx  encoding.&quot;);}}
+                    outBuffer.append((char) value);}else{
+                    if(aChar==&apos;t&apos;)
+                        aChar=&apos;\t&apos;;
+                    else if(aChar==&apos;r&apos;)
+                    aChar=&apos;\r&apos;;
+                    else if(aChar==&apos;n&apos;)
+                    aChar=&apos;\n&apos;;
+                    else if(aChar==&apos;f&apos;)
+                    aChar=&apos;\f&apos;;
+                    outBuffer.append(aChar);}}else
+                outBuffer.append(aChar);}
+//-----------------以上内容为转码过程---------------------------
+//将转成中文的响应结果在查看结果树中显示
+        prev.setResponseData(outBuffer.toString());</stringProp>
+        </BeanShellPostProcessor>
+        <hashTree/>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration" enabled="false">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery">Select 1</stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="dataSource">t6</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://webot2dingdang.c1t9kbuexy3c.rds.cn-north-1.amazonaws.com.cn:3306/webot2-t6?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">ZEGAhuDP</stringProp>
+          <stringProp name="poolMax">10</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">root</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="false">
+          <stringProp name="dataSource">t6</stringProp>
+          <stringProp name="query">select question,answer from question</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">question,answer</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取user、timestamp、token、url" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/api/chats/websocket?&amp;code=${code}&amp;time=${__time(,)}&amp;uid=${uid}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="timestamp" enabled="true">
+            <stringProp name="VAR">timestamp</stringProp>
+            <stringProp name="JSONPATH">$.data.timestamp</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="token" enabled="true">
+            <stringProp name="VAR">token</stringProp>
+            <stringProp name="JSONPATH">$.data.token</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="user" enabled="true">
+            <stringProp name="VAR">user</stringProp>
+            <stringProp name="JSONPATH">$.data.user</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="url" enabled="true">
+            <stringProp name="VAR">url</stringProp>
+            <stringProp name="JSONPATH">$.data.url</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="建立websoket连接" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
+        <hashTree>
+          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket  连接1" enabled="true">
+            <stringProp name="serverAddress"></stringProp>
+            <stringProp name="serverPort">80</stringProp>
+            <stringProp name="implementation">RFC6455 (v13)</stringProp>
+            <stringProp name="protocol">wss</stringProp>
+            <stringProp name="contextPath">${url}</stringProp>
+            <stringProp name="contentEncoding">UTF-8</stringProp>
+            <stringProp name="requestPayload">{&quot;method&quot;:&quot;connect&quot;,&quot;params&quot;:{&quot;user&quot;:&quot;${user}&quot;,&quot;info&quot;:&quot;&quot;,&quot;timestamp&quot;:&quot;${timestamp}&quot;,&quot;token&quot;:&quot;${token}&quot;},&quot;uid&quot;:&quot;1&quot;}</stringProp>
+            <stringProp name="connectionTimeout">5000</stringProp>
+            <stringProp name="responseTimeout">20000</stringProp>
+            <boolProp name="ignoreSslErrors">false</boolProp>
+            <boolProp name="streamingConnection">true</boolProp>
+            <stringProp name="connectionId">1</stringProp>
+            <stringProp name="responsePattern"></stringProp>
+            <stringProp name="closeConncectionPattern"></stringProp>
+            <stringProp name="proxyAddress"></stringProp>
+            <stringProp name="proxyPassword"></stringProp>
+            <stringProp name="proxyPort"></stringProp>
+            <stringProp name="proxyUsername"></stringProp>
+            <stringProp name="messageBacklog">3</stringProp>
+            <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+          <hashTree/>
+          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket  连接2" enabled="true">
+            <stringProp name="serverAddress"></stringProp>
+            <stringProp name="serverPort">80</stringProp>
+            <stringProp name="implementation">RFC6455 (v13)</stringProp>
+            <stringProp name="protocol">wss</stringProp>
+            <stringProp name="contextPath">${url}</stringProp>
+            <stringProp name="contentEncoding">UTF-8</stringProp>
+            <stringProp name="requestPayload">{&quot;method&quot;:&quot;subscribe&quot;,&quot;params&quot;:{&quot;channel&quot;:&quot;${user}&quot;},&quot;uid&quot;:&quot;2&quot;}</stringProp>
+            <stringProp name="connectionTimeout">5000</stringProp>
+            <stringProp name="responseTimeout">20000</stringProp>
+            <boolProp name="ignoreSslErrors">false</boolProp>
+            <boolProp name="streamingConnection">true</boolProp>
+            <stringProp name="connectionId">1</stringProp>
+            <stringProp name="responsePattern"></stringProp>
+            <stringProp name="closeConncectionPattern"></stringProp>
+            <stringProp name="proxyAddress"></stringProp>
+            <stringProp name="proxyPassword"></stringProp>
+            <stringProp name="proxyPort"></stringProp>
+            <stringProp name="proxyUsername"></stringProp>
+            <stringProp name="messageBacklog">3</stringProp>
+            <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+          <hashTree/>
+        </hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">6</stringProp>
+        </LoopController>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="delimiter">,</stringProp>
+            <stringProp name="fileEncoding">UTF-8</stringProp>
+            <stringProp name="filename">D:\testdata\question.csv</stringProp>
+            <boolProp name="quotedData">true</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <stringProp name="shareMode">shareMode.all</stringProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="variableNames">question</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="会话请求" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;uid&quot;: &quot;${uid}&quot;, &quot;source&quot;: &quot;h5&quot;, &quot;msg_type&quot;: &quot;text&quot;, &quot;media&quot;: {}, &quot;text&quot;: &quot;${question}&quot;}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">admin.t7.site.webot.ai</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/api/chat?&amp;code=${code}&amp;time=${__time(/1000,)}&amp;uid=${uid}</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器" enabled="true">
+            <stringProp name="CounterConfig.start">3</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">num</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Sampler--${question}" enabled="true">
+            <stringProp name="serverAddress"></stringProp>
+            <stringProp name="serverPort">80</stringProp>
+            <stringProp name="implementation">RFC6455 (v13)</stringProp>
+            <stringProp name="protocol">wss</stringProp>
+            <stringProp name="contextPath">${url}</stringProp>
+            <stringProp name="contentEncoding">UTF-8</stringProp>
+            <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${num}&quot;}</stringProp>
+            <stringProp name="connectionTimeout">5000</stringProp>
+            <stringProp name="responseTimeout">20000</stringProp>
+            <boolProp name="ignoreSslErrors">false</boolProp>
+            <boolProp name="streamingConnection">true</boolProp>
+            <stringProp name="connectionId">1</stringProp>
+            <stringProp name="responsePattern"></stringProp>
+            <stringProp name="closeConncectionPattern"></stringProp>
+            <stringProp name="proxyAddress"></stringProp>
+            <stringProp name="proxyPassword"></stringProp>
+            <stringProp name="proxyPort"></stringProp>
+            <stringProp name="proxyUsername"></stringProp>
+            <stringProp name="messageBacklog">1</stringProp>
+            <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="false">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-749552262">${__V(answer_${num})}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="false">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>false</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <threadCounts>true</threadCounts>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+          </hashTree>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="true">
+            <stringProp name="ConstantTimer.delay">1000</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket 即将断开" enabled="true">
+          <stringProp name="serverAddress"></stringProp>
+          <stringProp name="serverPort">80</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">${url}</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${num}&quot;}</stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId">1</stringProp>
+          <stringProp name="responsePattern"></stringProp>
+          <stringProp name="closeConncectionPattern">method</stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">1</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp Thread Group" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">5</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1535423078000</longProp>
+        <longProp name="ThreadGroup.end_time">1535423078000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </SetupThreadGroup>
+      <hashTree>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器${index}" enabled="true">
+          <stringProp name="CounterConfig.start">1</stringProp>
+          <stringProp name="CounterConfig.end"></stringProp>
+          <stringProp name="CounterConfig.incr">1</stringProp>
+          <stringProp name="CounterConfig.name">index</stringProp>
+          <stringProp name="CounterConfig.format"></stringProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
+        </CounterConfig>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config 用户数据" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">D:\testdata\getuid.txt</stringProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames">user</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="3059181">code</stringProp>
+            <stringProp name="3367">ip</stringProp>
+            <stringProp name="115792">uid</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="1129366235">
+              <stringProp name="1586286600">982ea76e92a211e787e1000c2913faa4</stringProp>
+              <stringProp name="-1909538536">admin.t7.site.webot.ai</stringProp>
+              <stringProp name="1223358363">${user}</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="${index},${uid}" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/api/chats/websocket?&amp;code=${code}&amp;time=${__time(,)}&amp;uid=${uid}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="timestamp" enabled="true">
+            <stringProp name="VAR">timestamp</stringProp>
+            <stringProp name="JSONPATH">$.data.timestamp</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="token" enabled="true">
+            <stringProp name="VAR">token</stringProp>
+            <stringProp name="JSONPATH">$.data.token</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="user" enabled="true">
+            <stringProp name="VAR">user</stringProp>
+            <stringProp name="JSONPATH">$.data.user</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="url" enabled="true">
+            <stringProp name="VAR">url</stringProp>
+            <stringProp name="JSONPATH">$.data.url</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="线程组" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1535355328000</longProp>
+        <longProp name="ThreadGroup.end_time">1535355328000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor-修改响应数据Unicode编码转中文" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">//获取响应代码Unicode编码的
+
+        String s2=new String(prev.getResponseData(),&quot;UTF-8&quot;);
+//---------------一下步骤为转码过程---------------
+        char aChar;
+        int len= s2.length();
+        StringBuffer outBuffer=new StringBuffer(len);
+        for(int x =0; x &lt;len;){
+            aChar= s2.charAt(x++);
+            if(aChar==&apos;\\&apos;){
+                aChar= s2.charAt(x++);
+                if(aChar==&apos;u&apos;){
+                    int value =0;
+                    for(int i=0;i&lt;4;i++){
+                        aChar= s2.charAt(x++);
+                        switch(aChar){
+                            case&apos;0&apos;:
+                            case&apos;1&apos;:
+                            case&apos;2&apos;:
+                            case&apos;3&apos;:
+                            case&apos;4&apos;:
+                            case&apos;5&apos;:
+                            case&apos;6&apos;:
+                            case&apos;7&apos;:
+                            case&apos;8&apos;:
+                            case&apos;9&apos;:
+                                value=(value &lt;&lt;4)+aChar-&apos;0&apos;;
+                                break;
+                            case&apos;a&apos;:
+                            case&apos;b&apos;:
+                            case&apos;c&apos;:
+                            case&apos;d&apos;:
+                            case&apos;e&apos;:
+                            case&apos;f&apos;:
+                                value=(value &lt;&lt;4)+10+aChar-&apos;a&apos;;
+                                break;
+                            case&apos;A&apos;:
+                            case&apos;B&apos;:
+                            case&apos;C&apos;:
+                            case&apos;D&apos;:
+                            case&apos;E&apos;:
+                            case&apos;F&apos;:
+                                value=(value &lt;&lt;4)+10+aChar-&apos;A&apos;;
+                                break;
+                            default:
+                                throw new IllegalArgumentException(
+                                        &quot;Malformed   \\uxxxx  encoding.&quot;);}}
+                    outBuffer.append((char) value);}else{
+                    if(aChar==&apos;t&apos;)
+                        aChar=&apos;\t&apos;;
+                    else if(aChar==&apos;r&apos;)
+                    aChar=&apos;\r&apos;;
+                    else if(aChar==&apos;n&apos;)
+                    aChar=&apos;\n&apos;;
+                    else if(aChar==&apos;f&apos;)
+                    aChar=&apos;\f&apos;;
+                    outBuffer.append(aChar);}}else
+                outBuffer.append(aChar);}
+//-----------------以上内容为转码过程---------------------------
+//将转成中文的响应结果在查看结果树中显示
+        prev.setResponseData(outBuffer.toString());</stringProp>
+        </BeanShellPostProcessor>
+        <hashTree/>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration" enabled="true">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery">Select 1</stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="dataSource">t6</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://webot2dingdang.c1t9kbuexy3c.rds.cn-north-1.amazonaws.com.cn:3306/webot2-t6?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">ZEGAhuDP</stringProp>
+          <stringProp name="poolMax">10</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">root</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
+          <stringProp name="dataSource">t6</stringProp>
+          <stringProp name="query">select question,answer,rich_answer from question where cid = 1</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">question,answer,rich_answer</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="115792">uid</stringProp>
+            <stringProp name="3059181">code</stringProp>
+            <stringProp name="-1165870106">question</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="-1001889713">
+              <stringProp name="-1623603532">2JjkJpAbMya2R8YxtVRryi</stringProp>
+              <stringProp name="1930244382">982ea76e92a211e787e1000c2913faa4&amp;</stringProp>
+              <stringProp name="1174193670">${__V(question_${index})}</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取user、timestamp、token" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">admin.t6.site.webot.ai</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path">/api/chats/websocket?&amp;code=${code}&amp;time=${__time(/1000,)}&amp;uid=${uid}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="timestamp" enabled="true">
+            <stringProp name="VAR">timestamp</stringProp>
+            <stringProp name="JSONPATH">$.data.timestamp</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="token" enabled="true">
+            <stringProp name="VAR">token</stringProp>
+            <stringProp name="JSONPATH">$.data.token</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="user" enabled="true">
+            <stringProp name="VAR">user</stringProp>
+            <stringProp name="JSONPATH">$.data.user</stringProp>
+            <stringProp name="DEFAULT"></stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+        </hashTree>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket  连接1" enabled="true">
+          <stringProp name="serverAddress">admin.t5.site.webot.ai</stringProp>
+          <stringProp name="serverPort">80</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">wss://admin.t5.site.webot.ai/centrifugo/connection/websocket</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload">{&quot;method&quot;:&quot;connect&quot;,&quot;params&quot;:{&quot;user&quot;:&quot;${user}&quot;,&quot;info&quot;:&quot;&quot;,&quot;timestamp&quot;:&quot;${timestamp}&quot;,&quot;token&quot;:&quot;${token}&quot;},&quot;uid&quot;:&quot;1&quot;}</stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId"></stringProp>
+          <stringProp name="responsePattern"></stringProp>
+          <stringProp name="closeConncectionPattern"></stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">3</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="code" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${code}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">code</stringProp>
+              </elementProp>
+              <elementProp name="time" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${timestamp}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">time</stringProp>
+              </elementProp>
+              <elementProp name="uid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${uid}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">uid</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree/>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket  连接2" enabled="true">
+          <stringProp name="serverAddress">admin.t5.site.webot.ai</stringProp>
+          <stringProp name="serverPort">80</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">wss://admin.t5.site.webot.ai/centrifugo/connection/websocket</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload">{&quot;method&quot;:&quot;subscribe&quot;,&quot;params&quot;:{&quot;channel&quot;:&quot;${user}&quot;},&quot;uid&quot;:&quot;2&quot;}</stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId"></stringProp>
+          <stringProp name="responsePattern"></stringProp>
+          <stringProp name="closeConncectionPattern"></stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">3</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="code" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${code}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">code</stringProp>
+              </elementProp>
+              <elementProp name="time" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${timestamp}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">time</stringProp>
+              </elementProp>
+              <elementProp name="uid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${uid}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">uid</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree/>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">1020</stringProp>
+        </LoopController>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="delimiter">,</stringProp>
+            <stringProp name="fileEncoding">UTF-8</stringProp>
+            <stringProp name="filename">D:\testdata\question_t6.csv</stringProp>
+            <boolProp name="quotedData">true</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <stringProp name="shareMode">shareMode.all</stringProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="variableNames">question</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="会话请求-${index}" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;uid&quot;: &quot;${uid}&quot;, &quot;source&quot;: &quot;h5&quot;, &quot;msg_type&quot;: &quot;text&quot;, &quot;media&quot;: {}, &quot;text&quot;: &quot;${question}&quot;}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">admin.t6.site.webot.ai</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/api/chat?&amp;code=${code}&amp;time=${__time(/1000,)}&amp;uid=${uid}</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器-num" enabled="true">
+            <stringProp name="CounterConfig.start">3</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">num</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器-index" enabled="true">
+            <stringProp name="CounterConfig.start">1</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">index</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+            <collectionProp name="UserParameters.names">
+              <stringProp name="-934426595">result</stringProp>
+            </collectionProp>
+            <collectionProp name="UserParameters.thread_values">
+              <collectionProp name="-809456968">
+                <stringProp name="-368484847">rich_answe</stringProp>
+              </collectionProp>
+            </collectionProp>
+            <boolProp name="UserParameters.per_iteration">true</boolProp>
+          </UserParameters>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="1-${result}" enabled="false">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="if 没有富媒体答案" enabled="true">
+            <stringProp name="IfController.condition">&quot;${__V(rich_answer_${index})} &quot; != null</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+              <collectionProp name="UserParameters.names">
+                <stringProp name="404338380">splitTest</stringProp>
+                <stringProp name="-934426595">result</stringProp>
+              </collectionProp>
+              <collectionProp name="UserParameters.thread_values">
+                <collectionProp name="1001303853">
+                  <stringProp name="-1972427140">${__split(${__V(answer_${index})},VAR,$$)}</stringProp>
+                  <stringProp name="-1664862661">${VAR_1}</stringProp>
+                </collectionProp>
+              </collectionProp>
+              <boolProp name="UserParameters.per_iteration">true</boolProp>
+            </UserParameters>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="2-${result},${VAR_n},${splitTest}" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">admin.t6.site.webot.ai</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器" enabled="false">
+              <stringProp name="CounterConfig.start">1</stringProp>
+              <stringProp name="CounterConfig.end">${VAR_n}</stringProp>
+              <stringProp name="CounterConfig.incr">1</stringProp>
+              <stringProp name="CounterConfig.name">x</stringProp>
+              <stringProp name="CounterConfig.format"></stringProp>
+              <boolProp name="CounterConfig.per_user">false</boolProp>
+            </CounterConfig>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="3-${result}" enabled="false">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Sampler--${__V(question_${index})},${result}" enabled="true">
+            <stringProp name="serverAddress">admin.t5.site.webot.ai</stringProp>
+            <stringProp name="serverPort">80</stringProp>
+            <stringProp name="implementation">RFC6455 (v13)</stringProp>
+            <stringProp name="protocol">wss</stringProp>
+            <stringProp name="contextPath">/centrifugo/connection/websocket</stringProp>
+            <stringProp name="contentEncoding">UTF-8</stringProp>
+            <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${num}&quot;}</stringProp>
+            <stringProp name="connectionTimeout">5000</stringProp>
+            <stringProp name="responseTimeout">20000</stringProp>
+            <boolProp name="ignoreSslErrors">false</boolProp>
+            <boolProp name="streamingConnection">true</boolProp>
+            <stringProp name="connectionId"></stringProp>
+            <stringProp name="responsePattern"></stringProp>
+            <stringProp name="closeConncectionPattern"></stringProp>
+            <stringProp name="proxyAddress"></stringProp>
+            <stringProp name="proxyPassword"></stringProp>
+            <stringProp name="proxyPort"></stringProp>
+            <stringProp name="proxyUsername"></stringProp>
+            <stringProp name="messageBacklog">3</stringProp>
+            <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="code" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${code}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">code</stringProp>
+                </elementProp>
+                <elementProp name="time" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${timestamp}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">time</stringProp>
+                </elementProp>
+                <elementProp name="uid" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${uid}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">uid</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言-${result}" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="71001929">${result}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="true">
+              <boolProp name="ResultCollector.error_logging">false</boolProp>
+              <objProp>
+                <name>saveConfig</name>
+                <value class="SampleSaveConfiguration">
+                  <time>true</time>
+                  <latency>true</latency>
+                  <timestamp>true</timestamp>
+                  <success>true</success>
+                  <label>true</label>
+                  <code>true</code>
+                  <message>true</message>
+                  <threadName>true</threadName>
+                  <dataType>true</dataType>
+                  <encoding>false</encoding>
+                  <assertions>true</assertions>
+                  <subresults>true</subresults>
+                  <responseData>false</responseData>
+                  <samplerData>false</samplerData>
+                  <xml>false</xml>
+                  <fieldNames>false</fieldNames>
+                  <responseHeaders>false</responseHeaders>
+                  <requestHeaders>false</requestHeaders>
+                  <responseDataOnError>false</responseDataOnError>
+                  <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                  <assertionsResultsToSave>0</assertionsResultsToSave>
+                  <bytes>true</bytes>
+                  <threadCounts>true</threadCounts>
+                </value>
+              </objProp>
+              <stringProp name="filename"></stringProp>
+            </ResultCollector>
+            <hashTree/>
+          </hashTree>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="true">
+            <stringProp name="ConstantTimer.delay">1000</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket 即将断开" enabled="true">
+          <stringProp name="serverAddress">admin.t5.site.webot.ai</stringProp>
+          <stringProp name="serverPort">80</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">/centrifugo/connection/websocket</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${num}&quot;}</stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId"></stringProp>
+          <stringProp name="responsePattern"></stringProp>
+          <stringProp name="closeConncectionPattern">method</stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">3</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="code" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${code}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">code</stringProp>
+              </elementProp>
+              <elementProp name="time" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${timestamp}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">time</stringProp>
+              </elementProp>
+              <elementProp name="uid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${uid}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">uid</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>true</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename">D:\测试\新建文件夹\FAQ测试结果-t6.xml</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="WebSocket 性能" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1535182747000</longProp>
+        <longProp name="ThreadGroup.end_time">1535182747000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器${index}" enabled="true">
+          <stringProp name="CounterConfig.start">1</stringProp>
+          <stringProp name="CounterConfig.end"></stringProp>
+          <stringProp name="CounterConfig.incr">1</stringProp>
+          <stringProp name="CounterConfig.name">index</stringProp>
+          <stringProp name="CounterConfig.format"></stringProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
+        </CounterConfig>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config 用户数据" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">D:\testdata\getuid.txt</stringProp>
+          <boolProp name="quotedData">true</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames">uid</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="3059181">code</stringProp>
+            <stringProp name="3367">ip</stringProp>
+            <stringProp name="115792">uid</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="-1537913094">
+              <stringProp name="1586286600">982ea76e92a211e787e1000c2913faa4</stringProp>
+              <stringProp name="-1909538536">admin.t7.site.webot.ai</stringProp>
+              <stringProp name="1147832196">${uid}</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor-修改响应数据Unicode编码转中文" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">//获取响应代码Unicode编码的
+
+        String s2=new String(prev.getResponseData(),&quot;UTF-8&quot;);
+//---------------一下步骤为转码过程---------------
+        char aChar;
+        int len= s2.length();
+        StringBuffer outBuffer=new StringBuffer(len);
+        for(int x =0; x &lt;len;){
+            aChar= s2.charAt(x++);
+            if(aChar==&apos;\\&apos;){
+                aChar= s2.charAt(x++);
+                if(aChar==&apos;u&apos;){
+                    int value =0;
+                    for(int i=0;i&lt;4;i++){
+                        aChar= s2.charAt(x++);
+                        switch(aChar){
+                            case&apos;0&apos;:
+                            case&apos;1&apos;:
+                            case&apos;2&apos;:
+                            case&apos;3&apos;:
+                            case&apos;4&apos;:
+                            case&apos;5&apos;:
+                            case&apos;6&apos;:
+                            case&apos;7&apos;:
+                            case&apos;8&apos;:
+                            case&apos;9&apos;:
+                                value=(value &lt;&lt;4)+aChar-&apos;0&apos;;
+                                break;
+                            case&apos;a&apos;:
+                            case&apos;b&apos;:
+                            case&apos;c&apos;:
+                            case&apos;d&apos;:
+                            case&apos;e&apos;:
+                            case&apos;f&apos;:
+                                value=(value &lt;&lt;4)+10+aChar-&apos;a&apos;;
+                                break;
+                            case&apos;A&apos;:
+                            case&apos;B&apos;:
+                            case&apos;C&apos;:
+                            case&apos;D&apos;:
+                            case&apos;E&apos;:
+                            case&apos;F&apos;:
+                                value=(value &lt;&lt;4)+10+aChar-&apos;A&apos;;
+                                break;
+                            default:
+                                throw new IllegalArgumentException(
+                                        &quot;Malformed   \\uxxxx  encoding.&quot;);}}
+                    outBuffer.append((char) value);}else{
+                    if(aChar==&apos;t&apos;)
+                        aChar=&apos;\t&apos;;
+                    else if(aChar==&apos;r&apos;)
+                    aChar=&apos;\r&apos;;
+                    else if(aChar==&apos;n&apos;)
+                    aChar=&apos;\n&apos;;
+                    else if(aChar==&apos;f&apos;)
+                    aChar=&apos;\f&apos;;
+                    outBuffer.append(aChar);}}else
+                outBuffer.append(aChar);}
+//-----------------以上内容为转码过程---------------------------
+//将转成中文的响应结果在查看结果树中显示
+        prev.setResponseData(outBuffer.toString());</stringProp>
+        </BeanShellPostProcessor>
+        <hashTree/>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration" enabled="false">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery">Select 1</stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="dataSource">t6</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://webot2dingdang.c1t9kbuexy3c.rds.cn-north-1.amazonaws.com.cn:3306/webot2-t6?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">ZEGAhuDP</stringProp>
+          <stringProp name="poolMax">10</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">root</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="false">
+          <stringProp name="dataSource">t6</stringProp>
+          <stringProp name="query">select question,answer from question</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">question,answer</stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="建立会话连接  ${index}" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取user、timestamp、token、url" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/api/chats/websocket?&amp;code=${code}&amp;time=${__time(,)}&amp;uid=${uid}</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="timestamp" enabled="true">
+              <stringProp name="VAR">timestamp</stringProp>
+              <stringProp name="JSONPATH">$.data.timestamp</stringProp>
+              <stringProp name="DEFAULT"></stringProp>
+              <stringProp name="VARIABLE"></stringProp>
+              <stringProp name="SUBJECT">BODY</stringProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="token" enabled="true">
+              <stringProp name="VAR">token</stringProp>
+              <stringProp name="JSONPATH">$.data.token</stringProp>
+              <stringProp name="DEFAULT"></stringProp>
+              <stringProp name="VARIABLE"></stringProp>
+              <stringProp name="SUBJECT">BODY</stringProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="user" enabled="true">
+              <stringProp name="VAR">user</stringProp>
+              <stringProp name="JSONPATH">$.data.user</stringProp>
+              <stringProp name="DEFAULT"></stringProp>
+              <stringProp name="VARIABLE"></stringProp>
+              <stringProp name="SUBJECT">BODY</stringProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+            <hashTree/>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="url" enabled="true">
+              <stringProp name="VAR">url</stringProp>
+              <stringProp name="JSONPATH">$.data.url</stringProp>
+              <stringProp name="DEFAULT"></stringProp>
+              <stringProp name="VARIABLE"></stringProp>
+              <stringProp name="SUBJECT">BODY</stringProp>
+            </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+            <hashTree/>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="建立websoket连接 " enabled="true">
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
+          <hashTree>
+            <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket  连接1" enabled="true">
+              <stringProp name="serverAddress"></stringProp>
+              <stringProp name="serverPort">80</stringProp>
+              <stringProp name="implementation">RFC6455 (v13)</stringProp>
+              <stringProp name="protocol">wss</stringProp>
+              <stringProp name="contextPath">${url}</stringProp>
+              <stringProp name="contentEncoding">UTF-8</stringProp>
+              <stringProp name="requestPayload">{&quot;method&quot;:&quot;connect&quot;,&quot;params&quot;:{&quot;user&quot;:&quot;${user}&quot;,&quot;info&quot;:&quot;&quot;,&quot;timestamp&quot;:&quot;${timestamp}&quot;,&quot;token&quot;:&quot;${token}&quot;},&quot;uid&quot;:&quot;1&quot;}</stringProp>
+              <stringProp name="connectionTimeout">5000</stringProp>
+              <stringProp name="responseTimeout">20000</stringProp>
+              <boolProp name="ignoreSslErrors">false</boolProp>
+              <boolProp name="streamingConnection">true</boolProp>
+              <stringProp name="connectionId">${index}</stringProp>
+              <stringProp name="responsePattern"></stringProp>
+              <stringProp name="closeConncectionPattern"></stringProp>
+              <stringProp name="proxyAddress"></stringProp>
+              <stringProp name="proxyPassword"></stringProp>
+              <stringProp name="proxyPort"></stringProp>
+              <stringProp name="proxyUsername"></stringProp>
+              <stringProp name="messageBacklog">3</stringProp>
+              <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+            <hashTree/>
+            <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket  连接2" enabled="true">
+              <stringProp name="serverAddress"></stringProp>
+              <stringProp name="serverPort">80</stringProp>
+              <stringProp name="implementation">RFC6455 (v13)</stringProp>
+              <stringProp name="protocol">wss</stringProp>
+              <stringProp name="contextPath">${url}</stringProp>
+              <stringProp name="contentEncoding">UTF-8</stringProp>
+              <stringProp name="requestPayload">{&quot;method&quot;:&quot;subscribe&quot;,&quot;params&quot;:{&quot;channel&quot;:&quot;${user}&quot;},&quot;uid&quot;:&quot;2&quot;}</stringProp>
+              <stringProp name="connectionTimeout">5000</stringProp>
+              <stringProp name="responseTimeout">20000</stringProp>
+              <boolProp name="ignoreSslErrors">false</boolProp>
+              <boolProp name="streamingConnection">true</boolProp>
+              <stringProp name="connectionId">${index}</stringProp>
+              <stringProp name="responsePattern"></stringProp>
+              <stringProp name="closeConncectionPattern"></stringProp>
+              <stringProp name="proxyAddress"></stringProp>
+              <stringProp name="proxyPassword"></stringProp>
+              <stringProp name="proxyPort"></stringProp>
+              <stringProp name="proxyUsername"></stringProp>
+              <stringProp name="messageBacklog">3</stringProp>
+              <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">2</stringProp>
+        </LoopController>
+        <hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="发送会话并保持 ${index} " enabled="true">
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
+          <hashTree>
+            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+              <stringProp name="delimiter">,</stringProp>
+              <stringProp name="fileEncoding">UTF-8</stringProp>
+              <stringProp name="filename">D:\testdata\question_t7.csv</stringProp>
+              <boolProp name="quotedData">true</boolProp>
+              <boolProp name="recycle">true</boolProp>
+              <stringProp name="shareMode">shareMode.all</stringProp>
+              <boolProp name="stopThread">false</boolProp>
+              <stringProp name="variableNames">question,similar_question,answer</stringProp>
+            </CSVDataSet>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="会话请求" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&quot;uid&quot;: &quot;${uid}&quot;, &quot;source&quot;: &quot;h5&quot;, &quot;msg_type&quot;: &quot;text&quot;, &quot;media&quot;: {}, &quot;text&quot;: &quot;${question}&quot;} </stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">admin.t7.site.webot.ai</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/api/chat?&amp;code=${code}&amp;time=${__time(/1000,)}&amp;uid=${uid}</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器" enabled="true">
+              <stringProp name="CounterConfig.start">3</stringProp>
+              <stringProp name="CounterConfig.end"></stringProp>
+              <stringProp name="CounterConfig.incr">1</stringProp>
+              <stringProp name="CounterConfig.name">num</stringProp>
+              <stringProp name="CounterConfig.format"></stringProp>
+              <boolProp name="CounterConfig.per_user">true</boolProp>
+              <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
+            </CounterConfig>
+            <hashTree/>
+            <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Sampler --${question},${answer}" enabled="true">
+              <stringProp name="serverAddress"></stringProp>
+              <stringProp name="serverPort">80</stringProp>
+              <stringProp name="implementation">RFC6455 (v13)</stringProp>
+              <stringProp name="protocol">wss</stringProp>
+              <stringProp name="contextPath">${url}</stringProp>
+              <stringProp name="contentEncoding">UTF-8</stringProp>
+              <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${num}&quot;}</stringProp>
+              <stringProp name="connectionTimeout">5000</stringProp>
+              <stringProp name="responseTimeout">20000</stringProp>
+              <boolProp name="ignoreSslErrors">false</boolProp>
+              <boolProp name="streamingConnection">true</boolProp>
+              <stringProp name="connectionId">${index}</stringProp>
+              <stringProp name="responsePattern"></stringProp>
+              <stringProp name="closeConncectionPattern"></stringProp>
+              <stringProp name="proxyAddress"></stringProp>
+              <stringProp name="proxyPassword"></stringProp>
+              <stringProp name="proxyPort"></stringProp>
+              <stringProp name="proxyUsername"></stringProp>
+              <stringProp name="messageBacklog">3</stringProp>
+              <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">getanswer</stringProp>
+                <stringProp name="RegexExtractor.regex">&quot;text&quot;:&quot;(.+?)&quot;</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">error</stringProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="false">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-749552262">${__V(answer_${num})}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="false">
+                <boolProp name="ResultCollector.error_logging">false</boolProp>
+                <objProp>
+                  <name>saveConfig</name>
+                  <value class="SampleSaveConfiguration">
+                    <time>true</time>
+                    <latency>true</latency>
+                    <timestamp>true</timestamp>
+                    <success>true</success>
+                    <label>true</label>
+                    <code>true</code>
+                    <message>true</message>
+                    <threadName>true</threadName>
+                    <dataType>true</dataType>
+                    <encoding>false</encoding>
+                    <assertions>true</assertions>
+                    <subresults>true</subresults>
+                    <responseData>false</responseData>
+                    <samplerData>false</samplerData>
+                    <xml>false</xml>
+                    <fieldNames>false</fieldNames>
+                    <responseHeaders>false</responseHeaders>
+                    <requestHeaders>false</requestHeaders>
+                    <responseDataOnError>false</responseDataOnError>
+                    <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                    <assertionsResultsToSave>0</assertionsResultsToSave>
+                    <bytes>true</bytes>
+                    <threadCounts>true</threadCounts>
+                  </value>
+                </objProp>
+                <stringProp name="filename"></stringProp>
+              </ResultCollector>
+              <hashTree/>
+              <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
+                <boolProp name="displayJMeterProperties">false</boolProp>
+                <boolProp name="displayJMeterVariables">true</boolProp>
+                <boolProp name="displaySamplerProperties">true</boolProp>
+                <boolProp name="displaySystemProperties">false</boolProp>
+              </DebugPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="true">
+              <stringProp name="ConstantTimer.delay">1000</stringProp>
+            </ConstantTimer>
+            <hashTree/>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器" enabled="false">
+              <stringProp name="IfController.condition"></stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+            </IfController>
+            <hashTree>
+              <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Sampler --${question}" enabled="true">
+                <stringProp name="serverAddress"></stringProp>
+                <stringProp name="serverPort">80</stringProp>
+                <stringProp name="implementation">RFC6455 (v13)</stringProp>
+                <stringProp name="protocol">wss</stringProp>
+                <stringProp name="contextPath">${url}</stringProp>
+                <stringProp name="contentEncoding">UTF-8</stringProp>
+                <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${num}&quot;}</stringProp>
+                <stringProp name="connectionTimeout">5000</stringProp>
+                <stringProp name="responseTimeout">20000</stringProp>
+                <boolProp name="ignoreSslErrors">false</boolProp>
+                <boolProp name="streamingConnection">true</boolProp>
+                <stringProp name="connectionId">1</stringProp>
+                <stringProp name="responsePattern"></stringProp>
+                <stringProp name="closeConncectionPattern"></stringProp>
+                <stringProp name="proxyAddress"></stringProp>
+                <stringProp name="proxyPassword"></stringProp>
+                <stringProp name="proxyPort"></stringProp>
+                <stringProp name="proxyUsername"></stringProp>
+                <stringProp name="messageBacklog">1</stringProp>
+                <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                  <collectionProp name="Arguments.arguments"/>
+                </elementProp>
+              </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+              <hashTree>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="false">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="-749552262">${__V(answer_${num})}</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">2</intProp>
+                </ResponseAssertion>
+                <hashTree/>
+                <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="断言结果" enabled="false">
+                  <boolProp name="ResultCollector.error_logging">false</boolProp>
+                  <objProp>
+                    <name>saveConfig</name>
+                    <value class="SampleSaveConfiguration">
+                      <time>true</time>
+                      <latency>true</latency>
+                      <timestamp>true</timestamp>
+                      <success>true</success>
+                      <label>true</label>
+                      <code>true</code>
+                      <message>true</message>
+                      <threadName>true</threadName>
+                      <dataType>true</dataType>
+                      <encoding>false</encoding>
+                      <assertions>true</assertions>
+                      <subresults>true</subresults>
+                      <responseData>false</responseData>
+                      <samplerData>false</samplerData>
+                      <xml>false</xml>
+                      <fieldNames>false</fieldNames>
+                      <responseHeaders>false</responseHeaders>
+                      <requestHeaders>false</requestHeaders>
+                      <responseDataOnError>false</responseDataOnError>
+                      <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                      <assertionsResultsToSave>0</assertionsResultsToSave>
+                      <bytes>true</bytes>
+                      <threadCounts>true</threadCounts>
+                    </value>
+                  </objProp>
+                  <stringProp name="filename"></stringProp>
+                </ResultCollector>
+                <hashTree/>
+                <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="timestamp" enabled="true">
+                  <stringProp name="VAR">timestamp</stringProp>
+                  <stringProp name="JSONPATH">$.data.timestamp</stringProp>
+                  <stringProp name="DEFAULT"></stringProp>
+                  <stringProp name="VARIABLE"></stringProp>
+                  <stringProp name="SUBJECT">BODY</stringProp>
+                </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+                <hashTree/>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器" enabled="true">
+          <stringProp name="CounterConfig.start">${num}</stringProp>
+          <stringProp name="CounterConfig.end"></stringProp>
+          <stringProp name="CounterConfig.incr">1</stringProp>
+          <stringProp name="CounterConfig.name">num+1</stringProp>
+          <stringProp name="CounterConfig.format"></stringProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
+        </CounterConfig>
+        <hashTree/>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket 即将断开${answer}" enabled="true">
+          <stringProp name="serverAddress"></stringProp>
+          <stringProp name="serverPort">80</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">${url}</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${__intSum(1,${num},test)}&quot;}</stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId">${index}</stringProp>
+          <stringProp name="responsePattern">{&quot;m223ethod&quot;:&quot;223&quot;,&quot;uid&quot;:&quot;${__intSum(1,${num},test)}&quot;}</stringProp>
+          <stringProp name="closeConncectionPattern">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${__intSum(1,${num},test)}&quot;}</stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">3</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree/>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket 即将断开2 ${num}" enabled="true">
+          <stringProp name="serverAddress"></stringProp>
+          <stringProp name="serverPort">80</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">${url}</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${__intSum(1,${test},test2)}&quot;}</stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId">${index}</stringProp>
+          <stringProp name="responsePattern"></stringProp>
+          <stringProp name="closeConncectionPattern">method</stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">3</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree/>
+        <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket 即将断开3" enabled="true">
+          <stringProp name="serverAddress"></stringProp>
+          <stringProp name="serverPort">80</stringProp>
+          <stringProp name="implementation">RFC6455 (v13)</stringProp>
+          <stringProp name="protocol">wss</stringProp>
+          <stringProp name="contextPath">${url}</stringProp>
+          <stringProp name="contentEncoding">UTF-8</stringProp>
+          <stringProp name="requestPayload">{&quot;method&quot;:&quot;ping&quot;,&quot;uid&quot;:&quot;${__intSum(1,${test2},test3)}&quot;}</stringProp>
+          <stringProp name="connectionTimeout">5000</stringProp>
+          <stringProp name="responseTimeout">20000</stringProp>
+          <boolProp name="ignoreSslErrors">false</boolProp>
+          <boolProp name="streamingConnection">true</boolProp>
+          <stringProp name="connectionId">${index}</stringProp>
+          <stringProp name="responsePattern"></stringProp>
+          <stringProp name="closeConncectionPattern">method</stringProp>
+          <stringProp name="proxyAddress"></stringProp>
+          <stringProp name="proxyPassword"></stringProp>
+          <stringProp name="proxyPort"></stringProp>
+          <stringProp name="proxyUsername"></stringProp>
+          <stringProp name="messageBacklog">3</stringProp>
+          <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+        </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="聚合报告" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
