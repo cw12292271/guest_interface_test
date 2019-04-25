@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>test_overview_page_api_接口测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+
+
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>test_overview_page_api_接口测试报告</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2018-05-17 15:23:29</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:09.318381</p>
+<p class='attribute'><strong>状态:</strong> 通过 3</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>用例执行情况：</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>Test_Overview_Page: 总览页面接口测试</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',3)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_客服服务数据_01: 客服服务数据</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: 登录账号 200
+2018-05-15 2018-05-16
+登录账号 200
+{'data': {'访客咨询情况': {'趋势': [{'时间': '2018-05-15 00:00:00', '老访客占比': 0.8462, '老访客': 11, '历史访客': 13, '新访客': 2, '新访客占比': 0.1538}, {'时间': '2018-05-16 00:00:00', '老访客占比': 0.6053, '老访客': 23, '历史访客': 38, '新访客': 15, '新访客占比': 0.3947}], '老访客占比': 0.5952, '老访客': 25, '历史访客': 42, '新访客': 17, '新访客占比': 0.4048}, '客服服务时长': {'响应时长': [{'&gt;1m': 0.2}, {'45s-1m': 0.0667}, {'30s-45s': 0.0}, {'15s-30s': 0.1333}, {'&lt;15s': 0.6}], '平均会话时长': 70.921, '会话时长': [{'&gt;8m': 0.0327}, {'6m-8m': 0.0234}, {'4m-6m': 0.028}, {'2m-4m': 0.1215}, {'&lt;2m': 0.7944}], '平均响应时长': 25.6675, '首次响应时长': [{'&gt;1m': 0.5}, {'45s-1m': 0.1667}, {'30s-45s': 0.0}, {'15s-30s': 0.0}, {'&lt;15s': 0.3333}], '平均首次响应时长': 53.5174}, '满意度': {'一般占比': 0.0, '参评率': 0.1136, '非常不满意': 0, '非常满意': 0, '非常不满意占比': 0.0, '满意': 8, '不满意': 2, '非常满意占比': 0.0, '一般': 0, '满意占比': 0.8, '不满意占比': 0.2}, '访客来源': {'网页占比': 0.9608, '微信占比': 0.0392, '微信': 2, '网页': 49}, '客服服务消息量': {'答问比': 0.8881, '趋势': [{'答问比': 0.7963, '时间': '2018-05-15 00:00:00', '总消息量': 97, '客服消息量': 43, '访客消息量': 54}, {'答问比': 0.9438, '时间': '2018-05-16 00:00:00', '总消息量': 173, '客服消息量': 84, '访客消息量': 89}], '总消息量': 270, '客服消息量': 127, '访客消息量': 143}, '客服服务数据': {'问题解决效率': 0.4231, '客服接待量': 208, '客服会话量': 88, '趋势': [{'客服解决量': 0, '问题解决效率': 0.4355, '客服接待量': 62, '客服会话量': 27, '时间': '2018-05-15 00:00:00'}, {'客服解决量': 0, '问题解决效率': 0.4178, '客服接待量': 146, '客服会话量': 61, '时间': '2018-05-16 00:00:00'}]}, '机器人服务数据': {'机器人会话量': 157, '机器人解决率': 0.4841, '趋势': [{'机器人会话量': 43, '时间': '2018-05-15 00:00:00', '机器人转人工率': 0.5116, '机器人解决量': 21, '机器人转人工会话量': 22, '机器人解决率': 0.4884}, {'机器人会话量': 114, '时间': '2018-05-16 00:00:00', '机器人转人工率': 0.5175, '机器人解决量': 55, '机器人转人工会话量': 59, '机器人解决率': 0.4825}], '机器人解决量': 76, '机器人转人工会话量': 81, '机器人转人工率': 0.5159}, '咨询分类': {'二级分类': [{'数量': 88, '内容': '未分类', '一级分类总数量': 88, '一级分类': '未分类', '占比': 1.0}], '一级分类': [{'数量': 88, '占比': 1.0, '一级分类': '未分类'}]}}, 'code': 0}
+接口-客服会话量:88
+客服会话量: select count(*) from chat_session where  created &gt;= '2018-05-15 00:00:00' and created &lt;= '2018-05-17 00:00:00' and last_session is null and user_id is not null
+   count(*)
+0        88
+[{'count(*)': 88}]
+数据库-客服会话量:88
+接口-客服接待量:208
+客服接待量: select count(*) from chat_session where  created &gt;= '2018-05-15 00:00:00' and created &lt;= '2018-05-17 00:00:00' and user_id is not null
+   count(*)
+0       208
+[{'count(*)': 208}]
+数据库-客服接待量:208
+接口-问题解决效率:0.4231
+200
+数据库-问题解决效率:0.4231
+0.4231=88/208
+登录账号 200
+退出登录 200
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_机器人服务数据_02: 机器人服务数据</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        通过</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <pre>pt1.2: 登录账号 200
+2018-05-11 2018-05-13
+登录账号 200
+{'data': {'访客咨询情况': {'趋势': [{'时间': '2018-05-11 00:00:00', '老访客占比': 0.8214, '老访客': 23, '历史访客': 28, '新访客': 5, '新访客占比': 0.1786}, {'时间': '2018-05-12 00:00:00', '老访客占比': 0.0, '老访客': 0, '历史访客': 0, '新访客': 0, '新访客占比': 0.0}, {'时间': '2018-05-13 00:00:00', '老访客占比': 0.6667, '老访客': 4, '历史访客': 6, '新访客': 2, '新访客占比': 0.3333}], '老访客占比': 0.7742, '老访客': 24, '历史访客': 31, '新访客': 7, '新访客占比': 0.2258}, '客服服务时长': {'响应时长': [{'&gt;1m': 0.0}, {'45s-1m': 0.0}, {'30s-45s': 0.0}, {'15s-30s': 1.0}, {'&lt;15s': 0.0}], '平均会话时长': 13.841, '会话时长': [{'&gt;8m': 0.0045}, {'6m-8m': 0.003}, {'4m-6m': 0.006}, {'2m-4m': 0.0329}, {'&lt;2m': 0.9536}], '平均响应时长': 29.5488, '首次响应时长': [{'&gt;1m': 0.0}, {'45s-1m': 0.0}, {'30s-45s': 0.0}, {'15s-30s': 1.0}, {'&lt;15s': 0.0}], '平均首次响应时长': 29.5488}, '满意度': {'一般占比': 0.0, '参评率': 0.0353, '非常不满意': 0, '非常满意': 0, '非常不满意占比': 0.0, '满意': 3, '不满意': 0, '非常满意占比': 0.0, '一般': 0, '满意占比': 1.0, '不满意占比': 0.0}, '访客来源': {'网页占比': 1.0, '微信占比': 0.0, '微信': 0, '网页': 34}, '客服服务消息量': {'答问比': 0.8682, '趋势': [{'答问比': 0.8532, '时间': '2018-05-11 00:00:00', '总消息量': 202, '客服消息量': 93, '访客消息量': 109}, {'答问比': 0.0, '时间': '2018-05-12 00:00:00', '总消息量': 0, '客服消息量': 0, '访客消息量': 0}, {'答问比': 0.95, '时间': '2018-05-13 00:00:00', '总消息量': 39, '客服消息量': 19, '访客消息量': 20}], '总消息量': 241, '客服消息量': 112, '访客消息量': 129}, '客服服务数据': {'问题解决效率': 0.1263, '客服接待量': 657, '客服会话量': 83, '趋势': [{'客服解决量': 0, '问题解决效率': 0.1059, '客服接待量': 642, '客服会话量': 68, '时间': '2018-05-11 00:00:00'}, {'客服解决量': 0, '问题解决效率': 0.0, '客服接待量': 0, '客服会话量': 0, '时间': '2018-05-12 00:00:00'}, {'客服解决量': 0, '问题解决效率': 1.0, '客服接待量': 15, '客服会话量': 15, '时间': '2018-05-13 00:00:00'}]}, '机器人服务数据': {'机器人会话量': 131, '机器人解决率': 0.3893, '趋势': [{'机器人会话量': 111, '时间': '2018-05-11 00:00:00', '机器人转人工率': 0.6126, '机器人解决量': 43, '机器人转人工会话量': 68, '机器人解决率': 0.3874}, {'机器人会话量': 0, '时间': '2018-05-12 00:00:00', '机器人转人工率': 0.0, '机器人解决量': 0, '机器人转人工会话量': 0, '机器人解决率': 0.0}, {'机器人会话量': 20, '时间': '2018-05-13 00:00:00', '机器人转人工率': 0.6, '机器人解决量': 8, '机器人转人工会话量': 12, '机器人解决率': 0.4}], '机器人解决量': 51, '机器人转人工会话量': 80, '机器人转人工率': 0.6107}, '咨询分类': {'二级分类': [{'数量': 85, '内容': '未分类', '一级分类总数量': 85, '一级分类': '未分类', '占比': 1.0}], '一级分类': [{'数量': 85, '占比': 1.0, '一级分类': '未分类'}]}}, 'code': 0}
+接口-机器人会话量:131
+机器人会话量: select count(*) from chat_session where  created &gt;= '2018-05-11 00:00:00' and created &lt;= '2018-05-14 00:00:00' and last_session is null and user_id is null
+   count(*)
+0       131
+[{'count(*)': 131}]
+数据库-机器人会话量:131
+接口-机器人解决量:51
+机器人解决量: select count(*) from chat_session where  created &gt;= '2018-05-11 00:00:00' and created &lt;= '2018-05-14 00:00:00' and user_id is null and status = 2 and robot_question_status = 1
+   count(*)
+0        51
+[{'count(*)': 51}]
+数据库-机器人解决量:51
+接口-机器人解决率:0.3893
+数据库-机器人解决率:0.3893
+0.3893=131/51
+接口-机器人转人工会话量:80
+机器人转人工会话量: select count(*) from chat_session where  created &gt;= '2018-05-11 00:00:00' and created &lt;= '2018-05-14 00:00:00'and creator = 1
+   count(*)
+0        80
+[{'count(*)': 80}]
+数据库-机器人转人工会话量:80
+接口-机器人转人工率:0.6107
+数据库-机器人转人工率:0.6107
+0.6107=80/131
+登录账号 200
+退出登录 200
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_客服服务消息量_03: 客服服务消息量</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        通过</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <pre>pt1.3: 登录账号 200
+2018-05-10 2018-05-11
+登录账号 200
+{'data': {'访客咨询情况': {'趋势': [{'时间': '2018-05-10 00:00:00', '老访客占比': 0.6944, '老访客': 25, '历史访客': 36, '新访客': 11, '新访客占比': 0.3056}, {'时间': '2018-05-11 00:00:00', '老访客占比': 0.8214, '老访客': 23, '历史访客': 28, '新访客': 5, '新访客占比': 0.1786}], '老访客占比': 0.6522, '老访客': 30, '历史访客': 46, '新访客': 16, '新访客占比': 0.3478}, '客服服务时长': {'响应时长': [{'&gt;1m': 0.25}, {'45s-1m': 0.0}, {'30s-45s': 0.0}, {'15s-30s': 0.5}, {'&lt;15s': 0.25}], '平均会话时长': 13.7445, '会话时长': [{'&gt;8m': 0.0038}, {'6m-8m': 0.0023}, {'4m-6m': 0.0106}, {'2m-4m': 0.0266}, {'&lt;2m': 0.9567}], '平均响应时长': 35.9784, '首次响应时长': [{'&gt;1m': 0.25}, {'45s-1m': 0.0}, {'30s-45s': 0.0}, {'15s-30s': 0.5}, {'&lt;15s': 0.25}], '平均首次响应时长': 35.9784}, '满意度': {'一般占比': 0.0, '参评率': 0.0738, '非常不满意': 0, '非常满意': 0, '非常不满意占比': 0.0, '满意': 9, '不满意': 2, '非常满意占比': 0.0, '一般': 0, '满意占比': 0.8182, '不满意占比': 0.1818}, '访客来源': {'网页占比': 1.0, '微信占比': 0.0, '微信': 0, '网页': 64}, '客服服务消息量': {'答问比': 0.8091, '趋势': [{'答问比': 0.7727, '时间': '2018-05-10 00:00:00', '总消息量': 234, '客服消息量': 102, '访客消息量': 132}, {'答问比': 0.8532, '时间': '2018-05-11 00:00:00', '总消息量': 202, '客服消息量': 93, '访客消息量': 109}], '总消息量': 436, '客服消息量': 195, '访客消息量': 241}, '客服服务数据': {'问题解决效率': 0.1122, '客服接待量': 1292, '客服会话量': 145, '趋势': [{'客服解决量': 2, '问题解决效率': 0.1185, '客服接待量': 650, '客服会话量': 77, '时间': '2018-05-10 00:00:00'}, {'客服解决量': 0, '问题解决效率': 0.1059, '客服接待量': 642, '客服会话量': 68, '时间': '2018-05-11 00:00:00'}]}, '机器人服务数据': {'机器人会话量': 272, '机器人解决率': 0.4706, '趋势': [{'机器人会话量': 161, '时间': '2018-05-10 00:00:00', '机器人转人工率': 0.472, '机器人解决量': 85, '机器人转人工会话量': 76, '机器人解决率': 0.528}, {'机器人会话量': 111, '时间': '2018-05-11 00:00:00', '机器人转人工率': 0.6126, '机器人解决量': 43, '机器人转人工会话量': 68, '机器人解决率': 0.3874}], '机器人解决量': 128, '机器人转人工会话量': 144, '机器人转人工率': 0.5294}, '咨询分类': {'二级分类': [{'数量': 1, '内容': '未分类', '一级分类总数量': 1, '一级分类': '123456789', '占比': 0.0067}, {'数量': 148, '内容': '未分类', '一级分类总数量': 148, '一级分类': '未分类', '占比': 0.9933}], '一级分类': [{'数量': 148, '占比': 0.9933, '一级分类': '未分类'}, {'数量': 1, '占比': 0.0067, '一级分类': '123456789'}]}}, 'code': 0}
+接口-总消息量:436
+总消息量: select count(*) from chat_log where source = "9" and (`raw` LIKE '%%"msg\_type": "text"%%') and (`raw` not LIKE '%%"is\_sys\_send": 1%%' or `raw` not LIKE '%%"is\_sys\_send": "1"%%')and created &gt;= '2018-05-10 00:00:00' and created &lt;= '2018-05-12 00:00:00' 
+   count(*)
+0       436
+[{'count(*)': 436}]
+数据库-总消息量:436
+接口-客服消息量:195
+客服消息量: select count(*) from chat_log where source = "9" and `raw` LIKE '%%"from": "kf"%%' and (`raw` LIKE '%%"msg\_type": "text"%%') and (`raw` not LIKE '%%"is\_sys\_send": 1%%' or `raw` not LIKE '%%"is\_sys\_send": "1"%%') and created &gt;= '2018-05-10 00:00:00' and created &lt;= '2018-05-12 00:00:00' 
+   count(*)
+0       195
+[{'count(*)': 195}]
+数据库-客服消息量:195
+接口-访客消息量:241
+访客消息量: select count(*) from chat_log where source = "9" and `raw` LIKE '%%"from": "user"%%' and (`raw` LIKE '%%"msg\_type": "text"%%') and (`raw` not LIKE '%%"is\_sys\_send": 1%%' or `raw` not LIKE '%%"is\_sys\_send": "1"%%')and created &gt;= '2018-05-10 00:00:00' and created &lt;= '2018-05-12 00:00:00' 
+   count(*)
+0       241
+[{'count(*)': 241}]
+数据库-访客消息量:241
+接口-答问比:0.8091
+数据库-答问比:0.8091
+0.8091=195/241
+登录账号 200
+退出登录 200
+</pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>3</td>
+            <td>3</td>
+            <td>0</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:3, name:'通过'},
+                        {value:0, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>
